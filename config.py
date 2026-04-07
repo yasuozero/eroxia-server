@@ -1,0 +1,6 @@
+WS_HOST: str = "127.0.0.1"
+WS_PORT: int = 8080
+
+ADMIN_PASS = "12345"
+
+SESSION_ID_LENGTH: int = 4
