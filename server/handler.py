@@ -35,16 +35,20 @@ async def message_handler(ws, message: str) -> None:
     match msg_type:
         case "admin":
             password = payload.get('password')
-
-            if password == ADMIN_PASS:
-                if manager._admin is None:
+            
+            if manager._admin is None: 
+                if password == ADMIN_PASS:
                     manager.admin = ws
                     await manager.send(ws, admin_message("success"))
                     await manager.broadcast(admin_message("occupied")) 
+                    
                 else:
-                    await manager.send(ws, admin_message("occupied"))
+                    await manager.send(ws, admin_message("failed"))
+                
             else:
-                await manager.send(ws, admin_message("failed"))
+                await manager.send(ws, admin_message("occupied"))
+
+                
                 
         case "test": # TODO: silinecek
             while True:
