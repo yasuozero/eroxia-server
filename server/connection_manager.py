@@ -21,14 +21,15 @@ class ConnectionManager:
             pass
             
     async def broadcast(self, message: str, ignore_admin: bool = True) -> None:
-        for client in self._clients:
+        dead = set()
+        for client in list(self._clients): 
             if ignore_admin and client == self._admin:
                 continue
-            
             try:
                 await client.send(message)
             except websockets.exceptions.ConnectionClosed:
-                pass
+                dead.add(client)
+        self._clients -= dead
     
     @property
     def admin(self):

@@ -2,13 +2,13 @@ from dataclasses import dataclass
 
 @dataclass
 class MotionData:
-    x: int = 0
-    y: int = 0
-    z: int = 0
-    alpha: int = 0
-    
+    x: float = 0.0
+    y: float = 0.0
+    z: float = 0.0
+    alpha: float = 0.0
+
 @dataclass
 class ProcessData:
-    temperature: int = 0
-    pressure: int = 0
-    flow: int = 0
+    temperature: float = 0.0
+    pressure: float = 0.0
+    flow: float = 0.0

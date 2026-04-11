@@ -18,9 +18,9 @@ class Session:
         self._activity_start = None
     
     @property
-    def active_time_seconds(self) -> int:
+    def active_time_seconds(self) -> float:
         if self._activity_start is not None:
-            return int(time.monotonic() - self._activity_start)
-        return 0
+            return round(time.monotonic() - self._activity_start, 1)
+        return 0.0
 
 session = Session()
