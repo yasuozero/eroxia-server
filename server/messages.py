@@ -21,15 +21,14 @@ def handshake_message() -> str:
         }
     )
     
-def admin_message(status: Literal["failed", "success", "occupied", "available"]) -> str:
+def admin_result_message(status: Literal["failed", "success", "occupied", "available"]) -> str:
     return json.dumps({
-        "type": "admin",
+        "type": "admin_result",
         "payload": {
             "status": status,
             "session_id": session.id
         }
-    })
-    
+    }) 
 
 def telemetry_message(motion: MotionData, process: ProcessData) -> str:
     return json.dumps({
@@ -47,5 +46,14 @@ def telemetry_message(motion: MotionData, process: ProcessData) -> str:
                 "pressure": process.pressure,
                 "flow": process.flow,
             }
+        }
+    })
+
+def action_result_message(action: str, success: bool) -> str:
+    return json.dumps({
+        "type": "action_result",
+        "payload": {
+            "action": action,
+            "success": success
         }
     })
